@@ -27,7 +27,7 @@ getBTCPrice()
 const shuffleButton = document.getElementById('shuffle');
 const product = document.getElementById('stupid');
 const currentPrice = document.getElementById('amount')
-
+const percentage = document.getElementById('percent')
 // const replaceText = "if u bought" + "\n" + "bitcoin instead" + "\n" + "of fuckin" + "\n" + "tesla," + "\n" + "you'd have $7,408,000."
 
 
@@ -36,13 +36,16 @@ shuffleButton.onclick = function shuffle() {
     let randomIndex = Math.floor(Math.random() * randMax)
     let randomProduct = productArray[randomIndex]
     let productName = randomProduct.name
-    let currentValue = randomProduct.btcAmount * btcPrice
-    let percentChange = (currentValue - randomProduct.originalPrice) / randomProduct.originalPrice
+    let currentValue = Math.round(randomProduct.btcAmount) * Math.round(btcPrice)
+    let percentChange = Math.round((currentValue - randomProduct.originalPrice) / (randomProduct.originalPrice))
     product.innerText = productName
-    currentPrice.innerText = currentValue
-    console.log(productName + ", " + currentValue + ", " + percentChange);
-    console.log(randomProduct)
-    console.log(btcPrice)
+    currentPrice.innerText = "$" + (currentValue).toLocaleString('en')
+    percentage.innerText = (percentChange).toLocaleString('en') + "%";
+    productArray.splice(randomIndex, 1)
+    console.log(productArray)
+    // console.log(productName + ", " + currentValue + ", " + percentChange);
+    // console.log(randomProduct)
+    // console.log(btcPrice)
 }
 
 // Product Objects
