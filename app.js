@@ -17,8 +17,6 @@ function getBTCPrice() {
   .then(data => {
     console.log(data.bpi.USD.rate_float);
     btcPrice = data.bpi.USD.rate_float;
-    let btcPriceComma = (btcPrice).toLocaleString()
-    btcPriceElement.innerText = "$" + "BTC Price: " + `${btcPriceComma}`
     })
   )}
 
@@ -26,7 +24,6 @@ function getBTCPrice() {
 getBTCPrice()
 
 // Identify HTML Elements
-const btcPriceElement = document.getElementById('btcPrice')
 const shuffleButton = document.getElementById('shuffle');
 const product = document.getElementById('stupid');
 const currentPrice = document.getElementById('amount')
@@ -46,7 +43,7 @@ shuffleButton.onclick = function shuffle() {
     let randomProduct = productArray[randomIndex]
     let randomPhrase = buttonPhrases[randomIndexTwo]
     let productName = randomProduct.name
-    let currentValue = Math.round(randomProduct.btcAmount) * Math.round(btcPrice)
+    let currentValue = Math.round((randomProduct.btcAmount) * Math.round(btcPrice))
     console.log(currentValue)
     let percentChange = Math.round((currentValue - randomProduct.originalPrice) / (randomProduct.originalPrice)).toLocaleString() + "x" + "\n" + "return"
     console.log(percentChange)
@@ -66,11 +63,11 @@ shuffleButton.onclick = function shuffle() {
     let percentage = document.getElementById('percent')
     product.innerText = productName
     productImage.src = randomProduct.image
+    productImage.title = "Oringal Price: " + "$" + (randomProduct.originalPrice).toLocaleString() + "\n" + "Release Date: " + randomProduct.release
     percentage.parentNode.replaceChild(percentElement, percentage)
     currentPrice.innerText = "$" + (currentValue).toLocaleString('en')
     productArray.splice(randomIndex, 1)
     shuffleButton.innerText = randomPhrase
-
   // Console Logs
     console.log(productArray)
     console.log(productName + ", " + currentValue + ", " + percentChange);
@@ -98,11 +95,6 @@ function counter(id, start, end, duration) {
 
 
 
-
-
-
-
-
 // Product Objects
   const shakeWeight = {
     name: 'Shakeweight',
@@ -110,6 +102,7 @@ function counter(id, start, end, duration) {
     singular: true,
     btcAmount: 290000.01,
     image: 'btcimage/Shake Weight.png',
+    release: "7/1/09"
   }
 
   const beatsSolo = {
@@ -117,7 +110,8 @@ function counter(id, start, end, duration) {
     originalPrice: 199,
     singular: true,
     btcAmount: 3980.13,
-    image: "btcimage/Beats Hd.png"
+    image: "btcimage/Beats Hd.png",
+    release: "12/1/10",
   }
 
   const sapiens = {
@@ -125,7 +119,8 @@ function counter(id, start, end, duration) {
     originalPrice: 24.99,
     singular: false,
     btcAmount: 833.48,
-    image: "btcimage/Sapiens.png"
+    image: "btcimage/Sapiens.png",
+    release: "1/1/11",
   }
 
   const tesla = {
@@ -133,7 +128,8 @@ function counter(id, start, end, duration) {
     originalPrice: 69420,
     singular: true,
     btcAmount: 680.588235,
-    image: "btcimage/Tesla v1.png"
+    image: "btcimage/Tesla v1.png",
+    release: "6/22/13",
   }
 
   const nintendoDS = {
@@ -141,7 +137,8 @@ function counter(id, start, end, duration) {
     originalPrice: 249,
     singular: true,
     btcAmount: 286.206897,
-    image: "btcimage/Nintendo DS.png"
+    image: "btcimage/Nintendo DS.png",
+    release: "3/27/11",
   }
 
   const oculus = {
@@ -149,7 +146,8 @@ function counter(id, start, end, duration) {
     originalPrice: 299,
     singular: true,
     btcAmount: 26.2972735,
-    image: "btcimage/Oculus.png"
+    image: "btcimage/Oculus.png",
+    release: "8/1/12",
   }
 
   const goPro = {
@@ -157,7 +155,8 @@ function counter(id, start, end, duration) {
     originalPrice: 299,
     singular: true,
     btcAmount: 23.142,
-    image: "btcimage/Go Pro.png"
+    image: "btcimage/Go Pro.png",
+    release: "12/1/12",
   }
 
   const starbucks = {
@@ -165,7 +164,8 @@ function counter(id, start, end, duration) {
     originalPrice: 4.95,
     singular: true,
     btcAmount: 16.5134,
-    image: "btcimage/Starbucks cup.png"
+    image: "btcimage/Starbucks cup.png",
+    release: "1/1/11",
   }
 
   const cardsAgainst = {
@@ -173,7 +173,8 @@ function counter(id, start, end, duration) {
     originalPrice: 25,
     singular: false,
     btcAmount: 7.26744186,
-    image: "btcimage/Cards Against Humanity.png"
+    image: "btcimage/Cards Against Humanity.png",
+    release: "5/1/11",
   }
 
   const iPhone = {
@@ -181,7 +182,8 @@ function counter(id, start, end, duration) {
     originalPrice: 749,
     singular: true,
     btcAmount: 5.84882087,
-    image: "btcimage/I phone 5.png"
+    image: "btcimage/I phone 5.png",
+    release: "9/20/13",
   }
 
   const googleGlass = {
@@ -189,7 +191,8 @@ function counter(id, start, end, duration) {
     originalPrice: 1500,
     singular: false,
     btcAmount: 3.3572068,
-    image: "btcimage/Google Glass.png"
+    image: "btcimage/Google Glass.png",
+    release: "5/14/14",
   }
 
   const coachellaTickets = {
@@ -197,7 +200,8 @@ function counter(id, start, end, duration) {
     originalPrice: 375,
     singular: false,
     btcAmount: 1.68463607,
-    image: "btcimage/Coachella tickets.png"
+    image: "btcimage/Coachella tickets.png",
+    release: "4/19/15",
   }
 
   const juicero = {
@@ -205,7 +209,8 @@ function counter(id, start, end, duration) {
     originalPrice: 699,
     singular: true,
     btcAmount: 1.60644237,
-    image: "btcimage/Juicero.png"
+    image: "btcimage/Juicero.png",
+    release: "3/1/16",
   }
 
   const ps4 = {
@@ -213,10 +218,36 @@ function counter(id, start, end, duration) {
     originalPrice: 399,
     singular: true,
     btcAmount: 1.07576166,
-    image: "btcimage/PS$.png"
+    image: "btcimage/PS$.png",
+    release: "11/13/13",
   }
 
+  const yeezy = {
+    name: 'Yeezy 350s',
+    originalPrice: 399,
+    singular: false,
+    btcAmount: 1.593688674,
+    image: "btcimage/Yeezys.png",
+    release: "6/27/15",
+  }
 
+  const juul = {
+    name: 'Juul Starter Kit',
+    originalPrice: 45,
+    singular: true,
+    btcAmount: .18722851,
+    image: "btcimage/Juul.png",
+    release: "5/22/15",
+  }
+
+  const hoverboard = {
+    name: 'hoverboard',
+    originalPrice: 150,
+    singular: true,
+    btcAmount: .25380711,
+    image: "btcimage/Hoverboard.png",
+    release: "8/1/14",
+  }
 
   const productArray = [
     shakeWeight,
@@ -232,4 +263,8 @@ function counter(id, start, end, duration) {
     googleGlass,
     coachellaTickets,
     juicero,
+    ps4,
+    yeezy,
+    juul,
+    hoverboard
   ];
